@@ -9,7 +9,7 @@ const PurifyCSSPlugin = require('purifycss-webpack-plugin');
 exports.devServer = function(options) {
   return {
     entry: {
-      'webpack-dev-server': 'webpack-dev-server/client?http://172.16.2.156:8080',
+      'webpack-dev-server': 'webpack-dev-server/client?http://localhost:8080',
       hmr: 'webpack/hot/only-dev-server'
     },
     devServer: {
@@ -22,7 +22,7 @@ exports.devServer = function(options) {
       port: options.port, // Defaults to 8080
       proxy: {
         '/api/**' : {
-          target: 'http://172.16.2.156:8080'
+          target: 'http://localhost:8080'
         }
         // '/user*' : {
         //   target: 'http://localhost:8080'
