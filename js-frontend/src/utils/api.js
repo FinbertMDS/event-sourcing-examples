@@ -40,6 +40,10 @@ export const apiSignUp = (body) => fetch(ENDPOINTS.emailSignUp(), {
   body: root.JSON.stringify(body)
 });
 
+export const apiSignOut = () => fetch(ENDPOINTS.emailSignOut(), {
+  ...METHODS.GET
+});
+
 export const apiGetCurrentUser = () => fetch(ENDPOINTS.currentUser(), {
   ...METHODS.GET
 });

@@ -133,7 +133,12 @@ class MyAccounts extends React.Component {
     //const deployTooltip = (<Tooltip>
     //  Create a new instance of this demo on your own Heroku server.
     //</Tooltip>);
-    const user = this.props.auth.user.attributes;
+    let user = this.props.auth.user.attributes;
+    if (!user) {
+      user = {
+        id: ''
+      }
+    }
     const {
       id: customerId,
       email = '',

@@ -63,7 +63,7 @@ export function initialize({cookies, isServer, currentLocation, userAgent} = {})
 
   // create the redux store
   const store = compose(
-    applyMiddleware(thunk, createLogger()),
+    applyMiddleware(thunk),
     reduxReactRouter({
       routes,
       createHistory: createHistoryMethod
@@ -80,6 +80,7 @@ export function initialize({cookies, isServer, currentLocation, userAgent} = {})
       default: {
         //apiUrl: '/',
         emailSignInPath: '/api/login',
+        emailSignOutPath: '/api/logout',
         customersPath: '/api/customers',
         currentUserPath: '/api/user',
         accountsPath: '/api/accounts',

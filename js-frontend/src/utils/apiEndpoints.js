@@ -4,6 +4,7 @@
 const API_ROOT = '/api';
 
 export const emailSignIn = () => API_ROOT + '/login';
+export const emailSignOut = () => API_ROOT + '/logout';
 export const emailSignUp = () => API_ROOT + '/customers';
 export const currentUser = () => API_ROOT + '/user';
 export const accountsPath = () => API_ROOT + '/accounts';

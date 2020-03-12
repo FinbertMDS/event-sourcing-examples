@@ -149,8 +149,6 @@ customersviewservice:
     - zookeeper
   environment:
     SPRING_DATA_MONGODB_URI: mongodb://mongodb/mydb
-  environment:
-    SPRING_DATA_MONGODB_URI: mongodb://mongodb/mydb
     SPRING_DATASOURCE_URL: jdbc:mysql://mysql/eventuate
     SPRING_DATASOURCE_USERNAME: mysqluser
     SPRING_DATASOURCE_PASSWORD: mysqlpw

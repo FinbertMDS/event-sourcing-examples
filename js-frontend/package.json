@@ -9,7 +9,7 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --progress --colors --watch --display-error-details --display-chunks --profile",
-    "start-dev": "export PORT=3000 && webpack-dev-server --host 0.0.0.0",
+    "start-dev": "set PORT=3000 && webpack-dev-server --host 0.0.0.0",
     "e2e-setup": "node_modules/selenium-standalone/bin/selenium-standalone install",
     "test-e2e": "nightwatch"
   },

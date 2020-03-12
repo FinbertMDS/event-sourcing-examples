@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import net.chrisrichardson.eventstore.javaexamples.banking.common.customers.UserCredentials;
 import net.chrisrichardson.eventstore.javaexamples.banking.commonauth.CustomerAuthService;
 import net.chrisrichardson.eventstore.javaexamples.banking.commonauth.model.ErrorResponse;
+import net.chrisrichardson.eventstore.javaexamples.banking.commonauth.model.SuccessResponse;
 import net.chrisrichardson.eventstore.javaexamples.banking.commonauth.model.User;
 import net.chrisrichardson.eventstore.javaexamples.banking.web.customers.queryside.common.QuerySideCustomer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.token.Token;
 import org.springframework.security.core.token.TokenService;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 
@@ -44,6 +48,15 @@ public class AuthController {
     Token token = tokenService.allocateToken(objectMapper.writeValueAsString(new User(request.getEmail())));
     return ResponseEntity.status(HttpStatus.OK).header("access-token", token.getKey())
             .body(customer);
+  }
+
+  @RequestMapping(value="/logout", method = RequestMethod.GET)
+  public SuccessResponse logoutPage (HttpServletRequest request, HttpServletResponse response) {
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    if (auth != null){
+      new SecurityContextLogoutHandler().logout(request, response, auth);
+    }
+    return new SuccessResponse("success");
   }
 
   @ResponseStatus(value = HttpStatus.NOT_FOUND)
